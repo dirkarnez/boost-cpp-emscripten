@@ -16,12 +16,13 @@
 #     tini \
 #     tzdata
 
-FROM ubuntu:latest
+FROM emscripten/emsdk:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get -y --no-install-recommends --allow-unauthenticated install \
    build-essential \
+   cmake \
    git \
    zip \
    unzip \
@@ -33,13 +34,13 @@ RUN apt-get -y --no-install-recommends --allow-unauthenticated install \
    bash \
    bc
 
-# Create a custom user with UID 1234 and GID 1234
-RUN groupadd -g 1234 customgroup && \
-    useradd -m -u 1234 -g customgroup customuser
+# # Create a custom user with UID 1234 and GID 1234
+# RUN groupadd -g 1234 customgroup && \
+#     useradd -m -u 1234 -g customgroup customuser
     
 # Switch to the custom user
-USER customuser
- 
+# USER customuser
+
 RUN mkdir /workspace
 COPY . /workspace
 
