@@ -63,6 +63,7 @@ find_package(Boost COMPONENTS math REQUIRED)
 
 if(Boost_FOUND)
     message(STATUS "YES")
+    # set(Boost_USE_STATIC_LIBS   ON)
 else()
     message(STATUS "NO")
 endif()
