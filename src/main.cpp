@@ -37,7 +37,7 @@ double random_boost_stuff() {
 }
 
 
-#ifndef _EMSCRIPTEN_ 
+#ifndef __EMSCRIPTEN__  
 int main() {
     std::cout << "Result ecdf(0.0): " << random_boost_stuff() << std::endl;
     return 0;

@@ -39,7 +39,9 @@ RUN apt-get -y --no-install-recommends --allow-unauthenticated install \
    libboost-thread-dev \
    libboost-serialization-dev \
    libboost-python-dev \
-   libboost-regex-dev
+   libboost-regex-dev \
+   libboost-math-dev \
+   libc++-dev
 
 # # Create a custom user with UID 1234 and GID 1234
 # RUN groupadd -g 1234 customgroup && \
