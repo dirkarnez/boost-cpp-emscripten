@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.18)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+# set(CMAKE_CXX_STANDARD 20)
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# set(CMAKE_CXX_EXTENSIONS OFF)
 # ENV EMSDK=/emsdk PATH=/emsdk:/emsdk/upstream/emscripten:/emsdk/node//bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # set(EMSDK "/emsdk")
 # set(EMSDK_NODE_BIN_DIR "${EMSDK}/node/20.18.0_64bit/bin")
@@ -58,9 +58,21 @@ endif()
 #     WORKING_DIRECTORY emsdk
 # )
 
-add_executable(${PROJECT_NAME} 
+
+find_package(Boost COMPONENTS math REQUIRED)
+
+if(Boost_FOUND)
+    message(STATUS "YES")
+else()
+    message(STATUS "NO")
+endif()
+
+add_executable(${PROJECT_NAME}
     "src/main.cpp"
 )
+
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+target_link_options(${PROJECT_NAME} PRIVATE "-static")
 
 set_target_properties(
     ${PROJECT_NAME}
@@ -69,5 +81,3 @@ set_target_properties(
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--bind -flto -s ALLOW_MEMORY_GROWTH=1 -s MAXIMUM_MEMORY=4GB -s STACK_SIZE=5MB -s EXPORT_NAME=PolyuworldEmscriptenAddonTemplate -s EXPORT_ES6=1 -s MODULARIZE=1 -s ENVIRONMENT=web,worker")
-
-target_link_options(${PROJECT_NAME} PRIVATE "-static")
