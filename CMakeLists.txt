@@ -63,7 +63,7 @@ find_package(Boost REQUIRED)
 
 if(Boost_FOUND)
     message(STATUS "YES")
-    set(Boost_USE_STATIC_LIBS OFF)
+    # set(Boost_USE_STATIC_LIBS OFF)
     include_directories(${Boost_INCLUDE_DIRS})
 else()
     message(STATUS "NO")
@@ -73,7 +73,7 @@ add_executable(${PROJECT_NAME}
     "src/main.cpp"
 )
 
-target_link_libraries(${PROJECT_NAME} Boost::boost)
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 # target_link_options(${PROJECT_NAME} PRIVATE "-static")
 
 set_target_properties(

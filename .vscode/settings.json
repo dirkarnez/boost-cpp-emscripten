@@ -1,0 +1,8 @@
+{
+    "git.enabled": true,
+    "git.path": "D:\\Softwares\\PortableGit\\bin\\git.exe",
+    "files.associations": {
+        "vector": "cpp",
+        "random": "cpp"
+    }
+}
