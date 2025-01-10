@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script type="module">
+        import { default as boostEmscripten } from "./boost-cpp-emscripten.js";
+
+        boostEmscripten()
+        .then(instance => {
+            console.log(instance.random_boost_stuff()); // 5
+        });
+    </script>
+</body>
+</html>
