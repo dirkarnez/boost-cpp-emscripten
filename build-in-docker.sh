@@ -8,7 +8,7 @@ function announce () {
 }
 
 
-git clone --branch=boost-1.71.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
+git clone --branch=boost-1.87.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
 cd /opt/boost && \
 git submodule update --init --recursive --depth=1 && \
 sed -i "s/emcc/em++/g" tools/build/src/tools/emscripten.jam && \
