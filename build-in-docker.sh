@@ -7,6 +7,10 @@ function announce () {
     echo "##########################################################################################"
 }
 
+# ./bootstrap.sh \
+#     --with-libraries="chrono,date_time,filesystem,log,headers,math,program_options,random,regex,system,serialization,thread" \
+#     --prefix="/build/boost" && \
+    
 git clone --branch=boost-1.87.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
 cd /opt/boost && \
 git submodule update --init --recursive --depth=1 && \
@@ -15,7 +19,7 @@ sed -i "s/\$(AROPTIONS) -o /\$(AROPTIONS) -r -o /g" tools/build/src/tools/emscri
 sed -i "s/\-L\"\$(LINKPATH)\" -o /-L\"\$(LINKPATH)\" -c -o /g" tools/build/src/tools/emscripten.jam && \
 sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/generators/searched-lib-generator.jam && \
 ./bootstrap.sh \
-    --with-libraries="chrono,date_time,filesystem,log,headers,math,program_options,random,regex,system,serialization,thread" \
+    --with-libraries="headers,math,random,system" \
     --prefix="/build/boost" && \
 ./b2 toolset=emscripten \
     threading=multi \
