@@ -1,6 +1,13 @@
 # /bin/bash
 export PATH="/emsdk:/emsdk/upstream/emscripten:/emsdk/node/20.18.0_64bit/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+function announce () {
+    echo "##########################################################################################"
+    echo "##############################  $*  #################################"
+    echo "##########################################################################################"
+}
+
+
 git clone --branch=boost-1.71.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
 cd /opt/boost && \
 git submodule update --init --recursive --depth=1 && \
@@ -20,16 +27,13 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
     linkflags="-s WASM_BIGINT" \
     define=BOOST_BIND_GLOBAL_PLACEHOLDERS \
     install && \
-    for f in $(ls /build/boost/lib/libboost*.bc); do emar rcs $(echo $f | sed s/\.bc\$/.a/) $f; rm $f; done
-
-read -p "ad" d
-
+    for f in $(ls /build/boost/lib/libboost*.bc); do emar rcs $(echo $f | sed s/\.bc\$/.a/) $f; rm $f; done && \
 cmake -G"Unix Makefiles" \
-    -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_TOOLCHAIN_FILE="/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
-    -DBoost_ROOT="/opt/boost" \
+    -DBoost_ROOT="/build/boost" \
+    -DBoost_INCLUDE_DIR="/build/boost/include" \
     -B./cmake-build && \
     cd cmake-build && \
     cmake --build . && \
-    cd ..
-cmake -G"Unix Makefiles"  -DCMAKE_BUILD_TYPE=Debug  -DCMAKE_TOOLCHAIN_FILE="/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"  -DBoost_ROOT="/build/boost"  -DBoost_INCLUDE_DIR="/build/boost/include" -B./cmake-build && cd cmake-build &&  cmake --build . && cd ..
+    announce "cmake completed"
