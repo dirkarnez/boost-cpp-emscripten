@@ -47,8 +47,17 @@ COPY . /workspace
 WORKDIR /workspace
 VOLUME /workspace
 
-# Print the UID and GID
-CMD echo 'Inside Container:' && \
-   echo 'User: $(whoami) UID: $(id -u) GID: $(id -g)' && \
-   ls -la && \
-   ./build-in-docker.sh
+# # Print the UID and GID
+# CMD echo 'Inside Container:' && \
+#    echo 'User: $(whoami) UID: $(id -u) GID: $(id -g)' && \
+#    ls -la && \
+#    ./build-in-docker.sh
+
+# RUN mkdir /workspace
+# RUN mkdir /dist
+
+# COPY . /workspace
+# WORKDIR /workspace
+# VOLUME /dist
+
+CMD [ "bash", "./build-in-docker.sh" ]
