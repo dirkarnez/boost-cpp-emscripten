@@ -24,10 +24,12 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
 ./b2 toolset=emscripten \
     threading=multi \
     link=static \
+    release \
+    --prefix=/emsdk/upstream/emscripten/cache/sysroot \
     runtime-link=shared \
     cflags="-pthread -O3" \
-    cxxflags="-pthread -O3 --std=c++17" \
-    linkflags="-s WASM_BIGINT" \
+    cxxflags="-pthread -O3 --std=c++17 -stdlib=libc++" \
+    linkflags="-stdlib=libc++ -s WASM_BIGINT" \
     define=BOOST_BIND_GLOBAL_PLACEHOLDERS \
     install && \
     for f in $(ls /build/boost/lib/libboost*.bc); do emar rcs $(echo $f | sed s/\.bc\$/.a/) $f; rm $f; done && \
