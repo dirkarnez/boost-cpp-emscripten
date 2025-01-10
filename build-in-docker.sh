@@ -7,7 +7,6 @@ function announce () {
     echo "##########################################################################################"
 }
 
-
 git clone --branch=boost-1.87.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
 cd /opt/boost && \
 git submodule update --init --recursive --depth=1 && \
