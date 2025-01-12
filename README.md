@@ -21,3 +21,9 @@ toolset=emscripten link=static
 
 ### Tutorials
 - [Dockerfile/postgres/Dockerfile at 57a0e0f00bd45736558c30d411c61c687a1ef5e9 · cyclica/Dockerfile](https://github.com/cyclica/Dockerfile/blob/57a0e0f00bd45736558c30d411c61c687a1ef5e9/postgres/Dockerfile#L12)
+- [Emscripten:编译的boost库，如何使cmake看到它们？-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/ask/sof/107453571)
+- [使用Cmake编译boost测试-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/ask/sof/102288582)
+- [来自CMake的Emscripten库无法链接-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/ask/sof/115765329)
+- [如何通过Emscripten使用Boost库-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/ask/sof/2000805)
+- [link 和 runtime-link，搭配shared 和 static（转） - ~小小鸟~ - 博客园](https://www.cnblogs.com/happykoukou/p/6992806.html)
+- [随手集 信手写: boost 安装(VC 和 mingw)](https://noteonx.blogspot.com/2009/04/boost.html)
