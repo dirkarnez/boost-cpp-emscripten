@@ -66,6 +66,7 @@ if(Boost_FOUND)
     set(Boost_USE_STATIC_LIBS ON)
     set(Boost_USE_STATIC_RUNTIME ON)
     include_directories(${Boost_INCLUDE_DIRS})
+    target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 else()
     message(STATUS "NO")
 endif()
@@ -74,8 +75,8 @@ add_executable(${PROJECT_NAME}
     "src/main.cpp"
 )
 
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
-# target_link_options(${PROJECT_NAME} PRIVATE "-static")
+
+target_link_options(${PROJECT_NAME} PRIVATE "-static")
 
 set_target_properties(
     ${PROJECT_NAME}
