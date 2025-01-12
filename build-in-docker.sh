@@ -27,7 +27,7 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
     target-os=linux \
     release \
     --prefix=/emsdk/upstream/emscripten/cache/sysroot \
-    runtime-link=static \
+    runtime-link=shared \
     cflags="-pthread -O3 -std=c17" \
     cxxflags="-pthread -O3 --std=c++17 -stdlib=libc++" \
     linkflags="-stdlib=libc++ -s WASM_BIGINT" \
@@ -39,6 +39,7 @@ cmake -G"Unix Makefiles" \
     -DCMAKE_TOOLCHAIN_FILE="/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
     -DBoost_ROOT="/build/boost" \
     -DBoost_INCLUDE_DIR="/build/boost/include" \
+    -DBOOST_HAS_PTHREADS=ON \
     -B./cmake-build && \
     cd cmake-build && \
     cmake --build . && \
