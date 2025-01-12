@@ -28,7 +28,7 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
     release \
     --prefix=/emsdk/upstream/emscripten/cache/sysroot \
     runtime-link=static \
-    cflags="-pthread -O3 -std=c17 -stdlib=libc" \
+    cflags="-pthread -O3 -std=c17" \
     cxxflags="-pthread -O3 --std=c++17 -stdlib=libc++" \
     linkflags="-stdlib=libc++ -s WASM_BIGINT" \
     define=BOOST_BIND_GLOBAL_PLACEHOLDERS \
