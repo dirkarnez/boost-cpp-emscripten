@@ -24,6 +24,7 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
 ./b2 toolset=emscripten \
     threading=multi \
     link=static \
+    target-os=linux \
     release \
     --prefix=/emsdk/upstream/emscripten/cache/sysroot \
     runtime-link=static \
