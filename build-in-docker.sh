@@ -11,7 +11,7 @@ function announce () {
 #     --with-libraries="chrono,date_time,filesystem,log,headers,math,program_options,random,regex,system,serialization,thread" \
 #     --prefix="/build/boost" && \
     
-git clone --branch=boost-1.87.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
+git clone --branch=boost-1.88.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
 cd /opt/boost && \
 git submodule update --init --recursive --depth=1 && \
 sed -i "s/emcc/em++/g" tools/build/src/tools/emscripten.jam && \
