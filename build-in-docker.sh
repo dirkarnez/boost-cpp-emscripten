@@ -28,8 +28,8 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
     release \
     --prefix=/emsdk/upstream/emscripten/cache/sysroot \
     runtime-link=shared \
-    cflags="-fms-extensions -pthread -O3" \
-    cxxflags="-fms-extensions -pthread -O3 --std=c++17 -stdlib=libc++" \
+    cflags="-pthread -O3" \
+    cxxflags="-pthread -O3 --std=c++17 -stdlib=libc++" \
     linkflags="-stdlib=libc++ -s WASM_BIGINT" \
     define=BOOST_BIND_GLOBAL_PLACEHOLDERS \
     install && \
@@ -37,6 +37,7 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
 cmake -G"Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_TOOLCHAIN_FILE="/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
+    -DCMAKE_CXX_FLAGS="-fms-extensions" \
     -DBoost_ROOT="/build/boost" \
     -DBoost_INCLUDE_DIR="/build/boost/include" \
     -DBOOST_HAS_PTHREADS=ON \
