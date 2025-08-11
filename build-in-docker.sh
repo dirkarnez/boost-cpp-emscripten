@@ -22,12 +22,13 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
     --with-libraries="headers,math,random,system" \
     --prefix="/build/boost" && \
 ./b2 toolset=emscripten \
-    threading=multi \
     link=static \
+    variant=release \
+    threading=single \
+    runtime-link=static \ 
     target-os=linux \
     release \
     --prefix=/emsdk/upstream/emscripten/cache/sysroot \
-    runtime-link=shared \
     cflags="-pthread -O3" \
     cxxflags="-pthread -O3 --std=c++17 -stdlib=libc++" \
     linkflags="-stdlib=libc++ -s WASM_BIGINT" \
