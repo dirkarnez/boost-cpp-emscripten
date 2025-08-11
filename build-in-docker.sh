@@ -21,12 +21,10 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
 ./bootstrap.sh \
     --with-libraries="headers,math,random,system" \
     --prefix="/build/boost" && \
-./b2 toolset=emscripten \
+emconfigure ./b2 toolset=emscripten \
     link=static \
-    variant=release \
     threading=single \
     runtime-link=static \ 
-    target-os=linux \
     release \
     --prefix=/emsdk/upstream/emscripten/cache/sysroot \
     cflags="-pthread -O3" \
