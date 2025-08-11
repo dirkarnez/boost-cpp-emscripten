@@ -10,7 +10,8 @@ function announce () {
 # ./bootstrap.sh \
 #     --with-libraries="chrono,date_time,filesystem,log,headers,math,program_options,random,regex,system,serialization,thread" \
 #     --prefix="/build/boost" && \
-    
+# /emsdk/upstream/emscripten/cache/sysroot/usr
+
 git clone --branch=boost-1.88.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
 cd /opt/boost && \
 git submodule update --init --recursive --depth=1 && \
@@ -21,6 +22,7 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
 ./bootstrap.sh \
     --with-libraries="headers,math,random,system" \
     --prefix="/build/boost" && \
+mkdir -p $(em-config CACHE)/sysroot/usr && \
 emconfigure ./b2 toolset=emscripten \
     link=static \
     variant=release \
