@@ -23,11 +23,12 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
     --prefix="/build/boost" && \
 emconfigure ./b2 toolset=emscripten \
     link=static \
+    variant=release \
     threading=single \
     runtime-link=static \ 
-    --prefix=/emsdk/upstream/emscripten/cache/sysroot \
-    cflags="-pthread -O3" \
-    cxxflags="-pthread -O3 --std=c++17 -stdlib=libc++" \
+    --prefix=$(em-config CACHE)/sysroot/usr \
+    cflags="-O3" \
+    cxxflags="-O3 --std=c++17 -stdlib=libc++" \
     linkflags="-stdlib=libc++ -s WASM_BIGINT" \
     define=BOOST_BIND_GLOBAL_PLACEHOLDERS \
     install && \
