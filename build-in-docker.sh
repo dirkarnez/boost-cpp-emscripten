@@ -25,7 +25,6 @@ emconfigure ./b2 toolset=emscripten \
     link=static \
     threading=single \
     runtime-link=static \ 
-    release \
     --prefix=/emsdk/upstream/emscripten/cache/sysroot \
     cflags="-pthread -O3" \
     cxxflags="-pthread -O3 --std=c++17 -stdlib=libc++" \
