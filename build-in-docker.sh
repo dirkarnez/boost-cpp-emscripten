@@ -23,15 +23,15 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
     --with-libraries="headers,math,random,system" \
     --prefix="/build/boost" && \
 mkdir -p "$(em-config CACHE)/sysroot/usr" && \
-emconfigure ./b2 toolset=emscripten \
+./b2 toolset=emscripten \
     link=static \
     variant=release \
-    threading=single \
-    runtime-link=static \
+    threading=multi \
+    runtime-link=shared \
     --prefix=$(em-config CACHE)/sysroot/usr \
-    cflags="-O3" \
-    cxxflags="-O3 --std=c++17 -stdlib=libc++" \
-    linkflags="-stdlib=libc++ -s WASM_BIGINT" \
+    cflags="-pthread -O3" \
+    cxxflags="-pthread -O3 --std=c++17" \
+    linkflags="-s WASM_BIGINT" \
     define=BOOST_BIND_GLOBAL_PLACEHOLDERS \
     install && \
     for f in $(ls /build/boost/lib/libboost*.bc); do emar rcs $(echo $f | sed s/\.bc\$/.a/) $f; rm $f; done && \
