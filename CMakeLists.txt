@@ -59,7 +59,7 @@ endif()
 # )
 
 
-find_package(Boost REQUIRED)
+find_package(Boost REQUIRED COMPONENTS math)
 
 if(Boost_FOUND)
     message(STATUS "YES")
