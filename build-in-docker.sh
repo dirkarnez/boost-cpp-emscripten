@@ -1,5 +1,5 @@
 # /bin/bash
-export PATH="/emsdk:/emsdk/upstream/emscripten:/emsdk/node/20.18.0_64bit/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="/emsdk:/emsdk/upstream/emscripten:/emsdk/node/22.16.0_64bit/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 function announce () {
     echo "##########################################################################################"
@@ -22,12 +22,12 @@ sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/gene
 ./bootstrap.sh \
     --with-libraries="headers,math,random,system" \
     --prefix="/build/boost" && \
-mkdir -p $(em-config CACHE)/sysroot/usr && \
+mkdir -p "$(em-config CACHE)/sysroot/usr" && \
 emconfigure ./b2 toolset=emscripten \
     link=static \
     variant=release \
     threading=single \
-    runtime-link=static \ 
+    runtime-link=static \
     --prefix=$(em-config CACHE)/sysroot/usr \
     cflags="-O3" \
     cxxflags="-O3 --std=c++17 -stdlib=libc++" \
