@@ -36,8 +36,7 @@ cd $current_directory && \
 cmake -G"Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_TOOLCHAIN_FILE="/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
-    -DBoost_ROOT="/boost" \
-    -DBoost_INCLUDE_DIR="/boost" \
+    -DBoost_ROOT="/boost/lib/emscripten" \
     -DBOOST_HAS_PTHREADS=ON \
     -B./cmake-build && \
     cd cmake-build && \
