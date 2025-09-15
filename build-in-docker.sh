@@ -12,34 +12,27 @@ function announce () {
 #     --prefix="/build/boost" && \
 # /emsdk/upstream/emscripten/cache/sysroot/usr
 # --prefix="/build/boost" && \
-git clone --branch=boost-1.88.0 --depth=1 https://github.com/boostorg/boost /opt/boost && \
-cd /opt/boost && \
-git submodule update --init --recursive --depth=1 && \
-sed -i "s/emcc/em++/g" tools/build/src/tools/emscripten.jam && \
-sed -i "s/\$(AROPTIONS) -o /\$(AROPTIONS) -r -o /g" tools/build/src/tools/emscripten.jam && \
-sed -i "s/\-L\"\$(LINKPATH)\" -o /-L\"\$(LINKPATH)\" -c -o /g" tools/build/src/tools/emscripten.jam && \
-sed -i "s/generators.register/#generators.register/g" tools/build/src/tools/generators/searched-lib-generator.jam && \
-./bootstrap.sh \
-    --with-libraries="headers,math,random,system" && \
-mkdir -p "$(em-config CACHE)/sysroot/usr" && \
-./b2 toolset=emscripten \
+
+
+wget -c https://boostorg.jfrog.io/artifactory/main/release/1.86.0/source/boost_1_86_0.tar.bz2 && \
+    mkdir /boost && \
+    tar --bzip2 -xf boost_1_86_0.tar.bz2 -C /boost --strip-components=1 && \
+    rm -f boost_1_86_0.tar.bz2 && \
+    rm -rf /boost/doc && \
+./bootstrap.sh && \
+rm -rf stage && \
+emconfigure ./b2 -a -j8 toolset=emscripten \
     link=static \
     variant=release \
-    threading=multi \
-    runtime-link=shared \
-    --prefix=$(em-config CACHE)/sysroot/usr \
-    cflags="-pthread -O3" \
-    cxxflags="-pthread -O3 --std=c++17" \
-    linkflags="-s WASM_BIGINT" \
-    define=BOOST_BIND_GLOBAL_PLACEHOLDERS \
-    install && \
-    for f in $(ls /build/boost/lib/libboost*.bc); do emar rcs $(echo $f | sed s/\.bc\$/.a/) $f; rm $f; done && \
+    threading=single \
+    variant=release --with-math --with-random stage \
+	--prefix=/boost/lib/emscripten --build-dir=./build install && \
+ rm -rf ./build && \
 cmake -G"Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_TOOLCHAIN_FILE="/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
-    -DCMAKE_CXX_FLAGS="-fms-extensions" \
-    -DBoost_ROOT="/build/boost" \
-    -DBoost_INCLUDE_DIR="/build/boost/include" \
+    -DBoost_ROOT="/boost" \
+    -DBoost_INCLUDE_DIR="/boost" \
     -DBOOST_HAS_PTHREADS=ON \
     -B./cmake-build && \
     cd cmake-build && \
