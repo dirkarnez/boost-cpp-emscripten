@@ -2,6 +2,7 @@ boost-cpp-emscripten
 ====================
 - [emscripten-ports/boost](https://github.com/emscripten-ports/boost)
 - https://github.com/CaptorAB/quantlib-wasm/blob/master/Dockerfile
+ - [React App](https://captorab.github.io/quantlib-wasm-demo/)
 ```
 git clone --recurse-submodules -b boost-1.87.0 https://github.com/boostorg/boost.git
 
