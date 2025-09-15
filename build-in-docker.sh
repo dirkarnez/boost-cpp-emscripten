@@ -13,13 +13,15 @@ function announce () {
 # /emsdk/upstream/emscripten/cache/sysroot/usr
 # --prefix="/build/boost" && \
 
-mkdir -pv /boost/lib/emscripten && \
-cd /boost && \
+# https://stackoverflow.com/questions/15724357/using-boost-with-emscripten/60550627#60550627
+cd /tmp && \
 wget -c https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.bz2 && \
     mkdir /boost && \
     tar --bzip2 -xf boost_1_86_0.tar.bz2 -C /boost --strip-components=1 && \
     rm -f boost_1_86_0.tar.bz2 && \
     rm -rf /boost/doc && \
+cd /boost && \ 
+mkdir -pv /boost/lib/emscripten && \
 ./bootstrap.sh && \
 rm -rf stage && \
 emconfigure ./b2 -a -j8 toolset=emscripten \
