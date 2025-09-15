@@ -14,7 +14,7 @@ function announce () {
 # --prefix="/build/boost" && \
 
 
-wget -c https://boostorg.jfrog.io/artifactory/main/release/1.86.0/source/boost_1_86_0.tar.bz2 && \
+wget -c https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.bz2 && \
     mkdir /boost && \
     tar --bzip2 -xf boost_1_86_0.tar.bz2 -C /boost --strip-components=1 && \
     rm -f boost_1_86_0.tar.bz2 && \
