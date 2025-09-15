@@ -7,6 +7,7 @@ function announce () {
     echo "##########################################################################################"
 }
 
+export current_directory=$(pwd)
 # ./bootstrap.sh \
 #     --with-libraries="chrono,date_time,filesystem,log,headers,math,program_options,random,regex,system,serialization,thread" \
 #     --prefix="/build/boost" && \
@@ -30,7 +31,8 @@ emconfigure ./b2 -a -j8 toolset=emscripten \
     threading=single \
     variant=release --with-math --with-random stage \
 	--prefix=/boost/lib/emscripten --build-dir=./build install && \
- rm -rf ./build && \
+rm -rf ./build && \
+cd $current_directory && \
 cmake -G"Unix Makefiles" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_TOOLCHAIN_FILE="/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
