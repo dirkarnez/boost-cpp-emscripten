@@ -45,3 +45,6 @@ toolset=emscripten link=static
 - https://github.com/tee3/boost-build-emscripten/blob/107b6f7cad0a9d622c8ab83e0936bdcbefec137b/emscripten.rst#L49
 - https://github.com/marcnewlin/gnuradio-web/blob/7d1729347b9bf5aa85e3d86856976354be1a7ccf/dockerfiles/boost.dockerfile#L22
 - https://github.com/ochafik/openscad-wasm/blob/fb7d65c6787e329bba2f34c344eeffd327990ba0/Dockerfile.base#L4
+
+
+<!-- Security scan triggered at 2026-09-15 09:32:06 -->
